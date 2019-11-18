@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<o>
+    <authorizeJointAcount1/>
+    <authorizeJointAcount2 />
+    <authorizeJointAcountFlag/>
+    <birthDate/>
+    <contactPoints>
+        <e>
+            <contactPointType>CONTACT</contactPointType>
+            <electronicContact>
+                <personalEmail />
+            </electronicContact>
+            <postalContact>
+                <address1>Sharjah</address1>
+                <address2/>
+                <address3/>
+                <addressCountry />
+            </postalContact>
+            <telephonicContact>
+                <alternateCountryCode />
+                <alternateMobileNumber />
+                <businessPhone />
+                <countryCode/>
+                <mobileNumber />
+                <residencePhone />
+            </telephonicContact>
+        </e>
+        <e>
+            <contactPointType>PERMANANT</contactPointType>
+            <postalContact>
+                <address1/>
+                <address2 />
+                <address3 />
+                <addressCountry/>
+            </postalContact>
+            <telephonicContact>
+                <countryCode/>
+                <mobileNumber/>
+            </telephonicContact>
+        </e>
+    </contactPoints>
+    <countryOfBirth/>
+    <countryOfResidence/>
+    <countryOfRisk/>
+    <customerName>
+        <firstName/>
+        <lastName/>
+        <prefixTitle/>
+    </customerName>
+    <customerNameInPassport/>
+    <employment>
+        <allowanceAmount/>
+        <allowanceSource/>
+        <businessName/>
+        <dateOfJoining/>
+        <employerCode/>
+        <employmentAddress/>
+        <monthlyCreditTransNo />
+        <monthlyCreditTransVal />
+        <monthlyDebitTransNo />
+        <monthlyDebitTransVal />
+        <nameOfEmployer/>
+        <natureOfBusiness/>
+        <natureOfBusinessName/>
+        <natureOfTransaction/>
+        <natureOfTransactionOther />
+        <otherAllowanceSource/>
+        <otherBanksAccounts>
+            <e/>
+            <e/>
+            <e/>
+        </otherBanksAccounts>
+        <otherBusiness/>
+        <otherIncome/>
+        <otherIncomeAmount/>
+        <otherIncomeSource/>
+        <otherProfession/>
+        <otherSalarySource/>
+        <profession/>
+        <salaryAmount/>
+        <salarySource/>
+        <sourceOfOtherWealth />
+        <sourceOfWealth/>
+        <totalValueOfWealth/>
+    </employment>
+    <fatca>
+        <poaCountries/>
+        <standingInstructionsCountries/>
+        <taxResidences/>
+        <usCitizen/>
+        <usResidency/>
+    </fatca>
+    <gender/>
+    <identities/>
+    <maritalStatus/>
+    <nationality/>
+    <otherNationalities/>
+    <otherPepCategory />
+    <otherPepRelativeCategory />
+    <otherPurpose />
+    <partnerAcount1 json_null="true" />
+    <partnerAcount2 json_null="true" />
+    <partnerFlag/>
+    <pepCategory/>
+    <pepFlag/>
+    <pepRelativeCategory/>
+    <pepRelativeFlag/>
+    <pepRelativeName/>
+    <pepRelativeType/>
+    <poaFlag/>
+    <poaName json_null="true" />
+    <preferredLanguage/>
+    <purpose/>
+    <qualification />
+    <relatives/>
+    <specialNeeds/>
+    <usaBorn/>
+    <cifSegment/>
+</o>
