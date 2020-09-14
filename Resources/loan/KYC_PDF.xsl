@@ -2,7 +2,8 @@
     <xsl:output doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" method="pdf" indent="yes" />
 
     <xsl:template match="/">
-        <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xlink="http://www.w3.org/1999/xlink"  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xlink="http://www.w3.org/1999/xlink"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:util="com.gulfbank.olb.integration.commons.XslUtil">
+
             <fo:layout-master-set>
                 <fo:simple-page-master master-name="page"
                                        page-height="29.7cm" page-width="21cm">
@@ -49,7 +50,7 @@
                                 <fo:table-body>
                                     <fo:table-row>
                                         <fo:table-cell>
-                                            <fo:block></fo:block>
+                                            <fo:block/>
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </fo:table-body>
@@ -737,28 +738,28 @@
                                         <fo:table-row>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="center">
-                                                    ID Expiry
+                                                    Expiry Date
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="center" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            تاريخ انتهاء الهوية
+                                                            تاريخ الانتهاء
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="center">
-                                                    ID/Passport No.
+                                                    Passport / Green Card Number
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="center">
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            رقم الهوية/جواز السفر
+                                                            رقم جواز السفر / البطاقة الخضراء
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -786,7 +787,7 @@
                                     <fo:table-column border="0.8 solid #004682"/>
                                     <fo:table-column border="0.8 solid #004682"/>
                                     <fo:table-column border="0.8 solid #004682"/>
-                                    <fo:table-body background-color="#CDDBE6">
+                                    <fo:table-body>
                                     <xsl:choose>
                                         <xsl:when test="//otherNationalities/e">
                                             <xsl:for-each select="//otherNationalities/e">
@@ -831,19 +832,357 @@
                                 </fo:table>
                             </fo:block>
 
+
+                            <!--Marital Status Row-->
+                            <fo:table margin-top="1mm">
+                                <fo:table-column column-width="13%"/>
+                                <fo:table-column column-width="77%"/>
+                                <fo:table-column column-width="10%"/>
+                                <fo:table-body>
+                                    <fo:table-row>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt">
+                                                Marital Status:
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell>
+                                            <fo:block>
+                                                <fo:table>
+                                                    <fo:table-column/>
+                                                    <fo:table-column column-width="5%"/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column column-width="5%"/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column column-width="5%"/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column column-width="5%"/>
+                                                    <fo:table-column/>
+                                                    <fo:table-body>
+                                                        <fo:table-row>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                    Widowed
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//maritalStatus = 'W'">
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            أرمل
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                    Divorced
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//maritalStatus = 'D'">
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            مطلق
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                    Married
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//maritalStatus = 'M'">
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            متزوج
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                    Single
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//maritalStatus = 'S'">
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            أعزب
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                    <fo:inline>
+                                                        الحالة الاجتماعية:
+                                                    </fo:inline>
+                                                </fo:bidi-override>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                    </fo:table-row>
+                                </fo:table-body>
+                            </fo:table>
+
+                            <!--Have children Row-->
+                            <fo:table margin-top="1mm">
+                                <fo:table-column/>
+                                <fo:table-column/>
+                                <fo:table-column/>
+                                <fo:table-body>
+                                    <fo:table-row>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt">
+                                                Do you have children?
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell>
+                                            <fo:block>
+                                                <fo:table>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-body>
+                                                        <fo:table-row>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                    No
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//relatives/e[relationship='C']">
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                            </fo:instream-foreign-object>
+
+
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            لا
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                    Yes
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//relatives/e[relationship='C']">
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                            </fo:instream-foreign-object>
+                                                                        </xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <fo:instream-foreign-object>
+                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                            </fo:instream-foreign-object>
+
+
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            نعم
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                    <fo:inline>
+                                                        هل لديك أبناء؟
+                                                    </fo:inline>
+                                                </fo:bidi-override>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                    </fo:table-row>
+                                </fo:table-body>
+                            </fo:table>
+
+
                             <fo:block>
                                 <!--Relatives table Heading-->
                                 <fo:table margin-top="1mm">
-                                    <fo:table-column border="0.8 solid #004682"/>
-                                    <fo:table-column border="0.8 solid #004682"/>
+                                    <fo:table-column/>
+                                    <fo:table-column/>
                                     <fo:table-body background-color="#CDDBE6">
-                                        <fo:table-row>
+                                        <fo:table-row border="0.8 solid #004682">
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="left">
                                                     Full Names of First Degree Relatives
                                                 </fo:block>
                                                 <fo:block color="#004682" font-size="7pt" text-align="left">
-                                                    (Parents – Spouse – Children)
+                                                    (Parents – Children)
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
@@ -857,7 +1196,7 @@
                                                 <fo:block color="#004682" font-size="7pt" text-align="right">
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            (الأم - الأب - الزوج - الزوجة - الأبناء)
+                                                            (الأم - الأب - الأبناء)
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -867,46 +1206,130 @@
                                 </fo:table>
 
                                 <!--Relatives table data-->
-                                <fo:table>
-                                    <fo:table-column border="0.8 solid #004682"/>
-                                    <fo:table-column border="0.8 solid #004682"/>
-                                    <fo:table-body background-color="#CDDBE6">
-                                    <xsl:choose>
-                                        <xsl:when test="//relatives/e[relationship ='F' or relationship='M' or relationship='C']">
-                                            <xsl:for-each select="//relatives/e[relationship ='F' or relationship='M' or relationship='C']">
+								<fo:table>
+                                    <fo:table-column column-width="7%"/>
+                                    <fo:table-column/>
+									<fo:table-column/>
+									<fo:table-column column-width="7%"/>
+                                    <fo:table-body>
+									<!-- Father relative row -->
+									<fo:table-row border="0.8 solid #004682">
+										<fo:table-cell padding="1mm">
+											<fo:block font-size="7pt" color="#004682" text-align="left">
+												Father: 
+											</fo:block>
+										</fo:table-cell>
+										<xsl:choose>
+											<xsl:when test="//relatives/e[relationship ='F']">
+												<fo:table-cell padding="1mm">
+													<fo:block font-size="7pt" color="#004682" text-align="left">
+														<xsl:value-of select="//relatives/e[relationship='F']/customerName"/>
+													</fo:block>
+												</fo:table-cell>
+												<fo:table-cell padding="1mm">
+													<fo:block font-size="7pt" color="#004682" text-align="right">
+														<xsl:value-of select="//relatives/e[relationship='F']/customerName"/>
+													</fo:block>
+												</fo:table-cell>
+											</xsl:when>
+											<xsl:otherwise>
+													<fo:table-row border="0.8 solid #004682">
+														<fo:table-cell padding="1mm" number-columns-spanned="2">
+															<fo:block/>
+														</fo:table-cell>
+													</fo:table-row>
+											</xsl:otherwise>
+										</xsl:choose>
+										<fo:table-cell padding="1mm">
+											<fo:block color="#004682" font-size="7pt" text-align="right" font-weight="bold">
+												<fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+													<fo:inline>
+                                                        اسم الأب:
+													</fo:inline>
+												</fo:bidi-override>
+											</fo:block>
+										</fo:table-cell>
+									</fo:table-row>
+									
+									<!-- Mother relative row -->
+									<fo:table-row border="0.8 solid #004682">
+										<fo:table-cell padding="1mm">
+											<fo:block font-size="7pt" color="#004682" text-align="left">
+												Mother: 
+											</fo:block>
+										</fo:table-cell>
+										<xsl:choose>
+											<xsl:when test="//relatives/e[relationship ='M']">
+												<fo:table-cell padding="1mm">
+													<fo:block font-size="7pt" color="#004682" text-align="left">
+														<xsl:value-of select="//relatives/e[relationship='M']/customerName"/>
+													</fo:block>
+												</fo:table-cell>
+												<fo:table-cell padding="1mm">
+													<fo:block font-size="7pt" color="#004682" text-align="right">
+														<xsl:value-of select="//relatives/e[relationship='M']/customerName"/>
+													</fo:block>
+												</fo:table-cell>
+											</xsl:when>
+											<xsl:otherwise>
+                                                <fo:table-cell padding="1mm" number-columns-spanned="2">
+                                                    <fo:block/>
+                                                </fo:table-cell>
+											</xsl:otherwise>
+										</xsl:choose>
+										<fo:table-cell padding="1mm">
+											<fo:block color="#004682" font-size="7pt" text-align="right" font-weight="bold">
+												<fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+													<fo:inline>
+                                                        اسم الأم:
+													</fo:inline>
+												</fo:bidi-override>
+											</fo:block>
+										</fo:table-cell>
+									</fo:table-row>
 
-                                                    <fo:table-row border="0.8 solid #004682">
-                                                        <fo:table-cell padding="1mm">
-                                                            <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                <xsl:value-of select="customerName"/> - <xsl:value-of
-                                                                select="relationshipName"/>
-                                                            </fo:block>
-                                                        </fo:table-cell>
-                                                        <fo:table-cell padding="1mm">
-                                                            <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                <xsl:value-of select="customerName"/> - <xsl:value-of
-                                                                select="relationshipName"/>
-                                                            </fo:block>
-                                                        </fo:table-cell>
-                                                    </fo:table-row>
-
-                                            </xsl:for-each>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-
-                                                <fo:table-row border="0.8 solid #004682">
-                                                    <fo:table-cell padding="2mm">
-                                                        <fo:block/>
-                                                    </fo:table-cell>
-                                                    <fo:table-cell padding="2mm">
-                                                        <fo:block/>
-                                                    </fo:table-cell>
-                                                </fo:table-row>
-
-                                        </xsl:otherwise>
-                                    </xsl:choose>
+									<!-- Children relative row -->
+                                    <fo:table-row border="0.8 solid #004682">
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block font-size="7pt" color="#004682" text-align="left">
+                                                Children:
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block font-size="7pt" color="#004682" text-align="left">
+                                                <xsl:choose>
+                                                <xsl:when test="//relatives/e[relationship='C']">
+                                                <xsl:for-each select="//relatives/e[relationship='C']">
+                                                <xsl:value-of select="customerName"/><xsl:if test="position() != last()">, </xsl:if>
+                                                </xsl:for-each>
+                                                </xsl:when>
+                                                </xsl:choose>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block font-size="7pt" color="#004682" text-align="right">
+                                                <xsl:choose>
+                                                <xsl:when test="//relatives/e[relationship='C']">
+                                                <xsl:for-each select="//relatives/e[relationship='C']">
+                                                <xsl:value-of select="customerName"/><xsl:if test="position() != last()">, </xsl:if>
+                                                </xsl:for-each>
+                                                </xsl:when>
+                                                </xsl:choose>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="right" font-weight="bold">
+                                                <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                    <fo:inline>
+                                                        اسماء الأبناء:
+                                                    </fo:inline>
+                                                </fo:bidi-override>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                    </fo:table-row>
                                     </fo:table-body>
                                 </fo:table>
+
                             </fo:block>
 
                             <fo:block>
@@ -942,14 +1365,14 @@
                                         <fo:table-row>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt">
-                                                    Please specify type of disability/Attach Disability Proof (Certificate/ID)
+                                                    Please specify type of disability/Attach Type of Disability Proof (Certificate)
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            يرجى ذكر نوع الإعاقة مع إرفاق مستند إثبات الإعاقة (شهادة إعاقة أو بطاقة إعاقة)
+                                                            يرجى ذكر نوع الإعاقة مع إرفاق مستند إثبات نوع الإعاقة (شهادة إعاقة)
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -1135,13 +1558,6 @@
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
-                                                <!--<fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                        <fo:inline>
-                                                            *لايمكن إدارة الحساب إلا بوجود ق ّيم
-                                                        </fo:inline>
-                                                    </fo:bidi-override>
-                                                </fo:block>-->
                                             </fo:table-cell>
 
                                             <fo:table-cell padding="1mm">
@@ -1226,8 +1642,107 @@
                                                 </fo:block>
                                             </fo:table-cell>
                                         </fo:table-row>
+
+										<!-- Account can be operated only by Legal Custodian -->
+										<fo:table-row>
+                                            <fo:table-cell padding="1mm" number-columns-spanned="2">
+                                                <fo:block/>
+                                            </fo:table-cell>
+											<fo:table-cell padding="1mm" number-columns-spanned="4">
+                                                <fo:block color="red" font-size="7pt" text-align="left" >
+                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                        <fo:inline>
+                                                            *لايمكن إدارة الحساب إلا بوجود قيم
+                                                        </fo:inline>
+                                                    </fo:bidi-override>
+                                                    <fo:inline color="red" font-size="7pt" text-align="left">
+                                                        Account can be operated only by Legal Custodian
+                                                    </fo:inline>
+                                                </fo:block>
+                                            </fo:table-cell>
+                                        </fo:table-row>
+
                                     </fo:table-body>
                                 </fo:table>
+
+                                <!--Special needs data (Others & Psychological) Row-->
+                                <fo:table>
+                                    <fo:table-column column-width="12%"/>
+                                    <fo:table-column column-width="38%"/>
+                                    <fo:table-column column-width="18%"/>
+                                    <fo:table-column column-width="10%"/>
+                                    <fo:table-column column-width="05%"/>
+                                    <fo:table-column column-width="16%"/>
+                                    <fo:table-body>
+                                    <fo:table-row>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                Other (Specify)
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm" background-color="#CDDBE6">
+                                            <fo:block font-size="7pt" color="#004682" text-align="center">
+                                                <xsl:choose>
+                                                    <xsl:when test="//specialNeeds = 'O'">
+                                                        <xsl:value-of select="//specialNeedsOthers"/>
+                                                    </xsl:when>
+                                                </xsl:choose>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                    <fo:inline>
+                                                        أخرى (حدد)
+                                                    </fo:inline>
+                                                </fo:bidi-override>
+                                            </fo:block>
+                                        </fo:table-cell>
+
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                Psychological
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                <xsl:choose>
+                                                    <xsl:when test="//specialNeeds = 'Y'">
+                                                        <fo:instream-foreign-object>
+                                                            <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                                <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                                <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                            </svg:g>
+                                                                                        </svg:svg>
+                                                        </fo:instream-foreign-object>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <fo:instream-foreign-object>
+                                                            <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                        <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                            <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        </svg:g>
+                                                                                    </svg:svg>
+                                                        </fo:instream-foreign-object>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="1mm">
+                                            <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                    <fo:inline>
+                                                        نفسية
+                                                    </fo:inline>
+                                                </fo:bidi-override>
+                                            </fo:block>
+                                        </fo:table-cell>
+                                    </fo:table-row>
+                                    </fo:table-body>
+                                </fo:table>
+
                             </fo:block>
 
                             <!--Country of birth Row-->
@@ -1615,216 +2130,6 @@
                                 </fo:table-body>
                             </fo:table>
 
-                            <!--Marital Status Row-->
-                            <fo:table margin-top="1mm">
-                                <fo:table-column column-width="13%"/>
-                                <fo:table-column column-width="77%"/>
-                                <fo:table-column column-width="10%"/>
-                                <fo:table-body>
-                                    <fo:table-row>
-                                        <fo:table-cell padding="1mm">
-                                            <fo:block color="#004682" font-size="7pt">
-                                                Marital Status:
-                                            </fo:block>
-                                        </fo:table-cell>
-                                        <fo:table-cell>
-                                            <fo:block>
-                                                <fo:table>
-                                                    <fo:table-column/>
-                                                    <fo:table-column column-width="5%"/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column column-width="5%"/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column column-width="5%"/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column column-width="5%"/>
-                                                    <fo:table-column/>
-                                                    <fo:table-body>
-                                                        <fo:table-row>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                    Widowed
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                    <xsl:choose>
-                                                                        <xsl:when test="//maritalStatus = 'W'">
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:when>
-                                                                        <xsl:otherwise>
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                            </svg:g>
-                                                                        </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:otherwise>
-                                                                    </xsl:choose>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            أرمل
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                    Divorced
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                    <xsl:choose>
-                                                                        <xsl:when test="//maritalStatus = 'D'">
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:when>
-                                                                        <xsl:otherwise>
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                            </svg:g>
-                                                                        </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:otherwise>
-                                                                    </xsl:choose>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            مطلق
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                    Married
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                    <xsl:choose>
-                                                                        <xsl:when test="//maritalStatus = 'M'">
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:when>
-                                                                        <xsl:otherwise>
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                            </svg:g>
-                                                                        </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:otherwise>
-                                                                    </xsl:choose>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            متزوج
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                    Single
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                    <xsl:choose>
-                                                                        <xsl:when test="//maritalStatus = 'S'">
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:when>
-                                                                        <xsl:otherwise>
-                                                                            <fo:instream-foreign-object>
-                                                                                <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                            </svg:g>
-                                                                        </svg:svg>
-                                                                            </fo:instream-foreign-object>
-                                                                        </xsl:otherwise>
-                                                                    </xsl:choose>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            أعزب
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                        <fo:table-cell padding="1mm">
-                                            <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                    <fo:inline>
-                                                        الحالة الاجتماعية:
-                                                    </fo:inline>
-                                                </fo:bidi-override>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </fo:table-body>
-                            </fo:table>
-
                             <!--Non-resident in Kuwait row-->
                             <fo:table margin-top="1mm">
                                 <fo:table-column column-width="33%"/>
@@ -1837,7 +2142,7 @@
                                     <fo:table-row>
                                         <fo:table-cell padding="1mm">
                                             <fo:block color="#004682" font-size="7pt">
-                                                Non-resident in Kuwait (Please fill W8BEN form)
+                                                Non-resident in Kuwait <fo:inline color="red" font-size="7pt">(Please fill W8BEN form)</fo:inline>
                                             </fo:block>
                                         </fo:table-cell>
                                         <fo:table-cell padding="1mm">
@@ -1870,7 +2175,10 @@
                                             <fo:block color="#004682" font-size="7pt" text-align="left" >
                                                 <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                     <fo:inline>
-                                                        غير مقيم في دولة الكويت (يرجى تعبئة نموذج W8BEN)
+                                                        غير مقيم في دولة الكويت
+                                                    <fo:inline color="red" font-size="7pt">
+                                                        (يرجى تعبئة نموذج W8BEN)
+                                                    </fo:inline>
                                                     </fo:inline>
                                                 </fo:bidi-override>
                                             </fo:block>
@@ -1928,14 +2236,14 @@
                                         <fo:table-row>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" font-weight="bold">
-                                                    Residential Address
+                                                    Residential Address in the State of Kuwait
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" font-weight="bold">
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            عنوان الإقامة
+                                                            عنوان الإقامة في دولة الكويت:
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -2049,7 +2357,7 @@
                                         </fo:table-row>
                                     </fo:table-body>
                                 </fo:table>
-
+                                
                                 <!--Address in Kuwait data row Area/Country-->
                                 <!--<fo:table margin-top="1mm">
                                     <fo:table-column column-width="08%"/>
@@ -2409,14 +2717,14 @@
                                         <fo:table-row>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" font-weight="bold">
-                                                    Residential Address in Home Country
+                                                    Customer Address in Home Country
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" font-weight="bold">
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            عنوان الإقامة في البلد الأصلي
+                                                            عنوان العميل في البلد الأصلي:
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -2498,7 +2806,7 @@
                                     <fo:table-body>
                                         <fo:table-row>
                                             <fo:table-cell padding="1mm">
-                                                <fo:block color="#004682" font-size="7pt">
+                                                <fo:block color="#004682" font-size="7pt" font-weight="bold">
                                                     Profession
                                                 </fo:block>
                                             </fo:table-cell>
@@ -2517,13 +2825,13 @@
 
                                 <!--Profession data 1st row-->
                                 <fo:table margin-top="2mm">
-                                    <fo:table-column column-width="20%"/>
+                                    <fo:table-column column-width="21%"/>
                                     <fo:table-column column-width="05%"/>
                                     <fo:table-column column-width="20%"/>
                                     <fo:table-column column-width="05%"/>
                                     <fo:table-column column-width="20%"/>
                                     <fo:table-column column-width="05%"/>
-                                    <fo:table-column column-width="20%"/>
+                                    <fo:table-column column-width="19%"/>
                                     <fo:table-column column-width="05%"/>
                                     <fo:table-body>
                                         <fo:table-row>
@@ -2531,12 +2839,12 @@
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            موظف إداري/مبيعات/خدمات
+                                                            موظف إداري / موظف مبيعات / موظف خدمات
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
                                                 <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                    Service/Sales/Clerical Staff
+                                                    Service Staff/Sales Staff/Clerical Staff
                                                 </fo:block>
                                             </fo:table-cell>
                                             <fo:table-cell padding="1mm">
@@ -4364,6 +4672,8 @@
                                         </fo:table-cell>
                                         <fo:table-cell padding="1mm" background-color="#CDDBE6">
                                             <fo:block font-size="7pt" color="#004682" text-align="center">
+                                                <!--TODO: Add
+                                                <xsl:value-of select="util:addAmount(//employment/salaryAmount, //employment/allowanceAmount)"/>-->
                                             </fo:block>
                                         </fo:table-cell>
                                         <fo:table-cell padding="1mm">
@@ -4782,7 +5092,7 @@
                                                                 Bank Name:
                                                             </fo:block>
                                                         </fo:table-cell>
-                                                        <fo:table-cell padding="1mm" background-color="#CDDBE6">
+                                                        <fo:table-cell padding="1mm">
                                                             <fo:block font-size="7pt" color="#004682" text-align="center">
                                                                 <xsl:value-of select="//employment/otherBanksAccounts/e[$count]"/>
                                                             </fo:block>
@@ -6352,6 +6662,821 @@
                             </fo:block>
 
                             <fo:block>
+                                <!--Other FATCA details-->
+                                <fo:table border="0.8 solid #004682">
+                                    <fo:table-column/>
+                                    <fo:table-body>
+                                        <fo:table-row>
+                                            <fo:table-cell>
+                                                <fo:table>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-column column-width="20%"/>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    Do you have a residence address in one country or more other than the State of Kuwait or your country of origin?
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell>
+                                                                <fo:block>
+                                                                    <fo:table>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-body>
+                                                                            <fo:table-row>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        No
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//fatca/outsideResidentialAddress/e">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                لا
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        Yes
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//fatca/outsideResidentialAddress/e">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                نعم
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                            </fo:table-row>
+                                                                        </fo:table-body>
+                                                                    </fo:table>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            هل لديك عنوان سكن في بلد أو أكثر بخلاف دولة الكويت أو بلدك الأصلي ؟
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+
+                                                <fo:table>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    If yes, name the countries
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
+                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//fatca/outsideResidentialAddress/e">
+                                                                            <xsl:for-each select="//fatca/outsideResidentialAddress/e">
+                                                                                <xsl:value-of select="countryCodeName"/>
+                                                                                <xsl:if test="position() != last()">, </xsl:if>
+                                                                            </xsl:for-each>
+                                                                        </xsl:when>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            إذا نعم، أذكر أسماء البلدان:
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+                                            </fo:table-cell>
+                                        </fo:table-row>
+                                    </fo:table-body>
+                                </fo:table>
+
+                                <fo:table margin-top="2mm" border="0.8 solid #004682">
+                                    <fo:table-column/>
+                                    <fo:table-body>
+                                        <fo:table-row>
+                                            <fo:table-cell>
+                                                <fo:table>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-column column-width="20%"/>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    Have you issued Power of Attorney to a third party to operate on this account on your behalf?
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell>
+                                                                <fo:block>
+                                                                    <fo:table>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-body>
+                                                                            <fo:table-row>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        No
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//poaFlag = 'true'">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                لا
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        Yes
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//poaFlag = 'true'">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                نعم
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                            </fo:table-row>
+                                                                        </fo:table-body>
+                                                                    </fo:table>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            هل قمت بإصدار توكيل لأحد للتعامل على الحساب نيابة عنك ؟
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+
+                                                <fo:table>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    If yes, name the attorney in full and their residence country
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
+                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
+                                                                    <xsl:value-of select="//o/poaName"/>
+                                                                    <xsl:if test="//o/poaName != '' and //o/poaNationalityName != ''"> -
+                                                                    <xsl:value-of select="//o/poaNationalityName"/>
+                                                                    </xsl:if>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            إذا نعم، أذكر الإسم الكامل للوكيل وبلد إقامة الوكيل:
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+                                            </fo:table-cell>
+                                        </fo:table-row>
+                                    </fo:table-body>
+                                </fo:table>
+
+                                <fo:table border="0.8 solid #004682">
+                                    <fo:table-column/>
+                                    <fo:table-body>
+                                        <fo:table-row>
+                                            <fo:table-cell>
+                                                <fo:table>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-column column-width="20%"/>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    Are you authorized to sign on other persons’ accounts with Gulf Bank or do you have joint accounts with them?
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell>
+                                                                <fo:block>
+                                                                    <fo:table>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-body>
+                                                                            <fo:table-row>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        No
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//authorizeJointAcountFlag = 'true'">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                لا
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        Yes
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//authorizeJointAcountFlag = 'true'">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                نعم
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                            </fo:table-row>
+                                                                        </fo:table-body>
+                                                                    </fo:table>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            هل أنت مخول بالتوقيع على حسابات أشخاص آخرين لدى بنك الخليج أو لديك حسابات مشتركة معهم ؟
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+
+                                                <fo:table>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    If yes, write the account number
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
+                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
+                                                                    <xsl:value-of select="//authorizeJointAcount1"/>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            إذا نعم، أذكر رقم الحساب
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+                                            </fo:table-cell>
+                                        </fo:table-row>
+                                    </fo:table-body>
+                                </fo:table>
+
+                                <fo:table border="0.8 solid #004682">
+                                    <fo:table-column/>
+                                    <fo:table-body>
+                                        <fo:table-row>
+                                            <fo:table-cell>
+                                                <fo:table>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-column column-width="20%"/>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    Do you have standing orders to transfer funds to any of your accounts outside the State of Kuwait?
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell>
+                                                                <fo:block>
+                                                                    <fo:table>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-body>
+                                                                            <fo:table-row>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        No
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//fatca/standingInstructionsCountries/e">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                لا
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        Yes
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//fatca/standingInstructionsCountries/e">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                    </svg:g>
+                                                                                </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                نعم
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                            </fo:table-row>
+                                                                        </fo:table-body>
+                                                                    </fo:table>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            هل لديك تعليمات ثابتة لتحويل الأموال إلى أي من حساباتك خارج دولة الكويت ؟
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+
+                                                <fo:table>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    If yes, write the Country name
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
+                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="//fatca/standingInstructionsCountries/e">
+                                                                            <xsl:for-each select="//fatca/standingInstructionsCountries/e">
+                                                                                <xsl:value-of select="countryCodeName"/>
+                                                                                <xsl:if test="position() != last()">, </xsl:if>
+                                                                            </xsl:for-each>
+                                                                        </xsl:when>
+                                                                    </xsl:choose>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            إذا نعم، أذكر إسم البلد
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+                                            </fo:table-cell>
+                                        </fo:table-row>
+                                    </fo:table-body>
+                                </fo:table>
+
+                                <fo:table border="0.8 solid #004682">
+                                    <fo:table-column/>
+                                    <fo:table-body>
+                                        <fo:table-row>
+                                            <fo:table-cell>
+                                                <fo:table>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-column column-width="20%"/>
+                                                    <fo:table-column column-width="40%"/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    Are you a partner in a company or a chairman of a company that has accounts with Gulf Bank?
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell>
+                                                                <fo:block>
+                                                                    <fo:table>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-column/>
+                                                                        <fo:table-body>
+                                                                            <fo:table-row>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        No
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//partnerFlag = 'true'">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                لا
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
+                                                                                        Yes
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="//partnerFlag = 'true'">
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
+                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
+                                                                                </svg:g>
+                                                                            </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <fo:instream-foreign-object>
+                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
+                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
+                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
+                                                                            </svg:g>
+                                                                        </svg:svg>
+                                                                                                </fo:instream-foreign-object>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                                <fo:table-cell padding="1mm">
+                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
+                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                                            <fo:inline>
+                                                                                                نعم
+                                                                                            </fo:inline>
+                                                                                        </fo:bidi-override>
+                                                                                    </fo:block>
+                                                                                </fo:table-cell>
+                                                                            </fo:table-row>
+                                                                        </fo:table-body>
+                                                                    </fo:table>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            هل أنت شريك في شركة أو تتولى إدارة شركة لديها حسابات في بنك الخليج ؟
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+
+                                                <fo:table>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-column/>
+                                                    <fo:table-body>
+                                                        <fo:table-row padding="1mm">
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt">
+                                                                    If yes, write the account number
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
+                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
+                                                                    <xsl:value-of select="//partnerAcount1"/>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                            <fo:table-cell padding="1mm">
+                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
+                                                                        <fo:inline>
+                                                                            إذا نعم، أذكر رقم الحساب
+                                                                        </fo:inline>
+                                                                    </fo:bidi-override>
+                                                                </fo:block>
+                                                            </fo:table-cell>
+                                                        </fo:table-row>
+                                                    </fo:table-body>
+                                                </fo:table>
+                                            </fo:table-cell>
+                                        </fo:table-row>
+                                    </fo:table-body>
+                                </fo:table>
+                            </fo:block>
+
+                            <fo:block>
                                 <!--PEP heading-->
                                 <fo:table margin-top="1mm" border="0.8 solid #004682" background-color="#CDDBE6">
                                     <fo:table-column/>
@@ -6488,7 +7613,7 @@
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            هل أنت شخص معرض سياسياً بحيث أوكلت إليك في السابق أو تتولى حالياً مهام عامة عليا في أي دولة وفق التعاريف المنصوصة في الجدول التالي؟
+                                                            هل أنت شخص معرض سياسياً بحيث أوكلت إليك في السابق أو تتولى حالياً مهام عامة عليا في أي دولة وفق التعاريف المنصوصة في الجدول التالي ؟
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -6640,7 +7765,7 @@
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            هل أي من أقاربك حتى الدرجة الثانية شخص معرض سياسياً (حالياً أو سابقاً)؟
+                                                            هل أي من أقاربك حتى الدرجة الثانية شخص معرض سياسياً (حالياً أو سابقاً) ؟
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -7664,121 +8789,7 @@
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            هل أنت مواطن أمريكي؟
-                                                        </fo:inline>
-                                                    </fo:bidi-override>
-                                                </fo:block>
-                                            </fo:table-cell>
-                                        </fo:table-row>
-
-                                        <fo:table-row padding="1mm">
-                                            <fo:table-cell padding="1mm">
-                                                <fo:block color="#004682" font-size="7pt">
-                                                    Do you hold residency in the USA?
-                                                </fo:block>
-                                            </fo:table-cell>
-                                            <fo:table-cell>
-                                                <fo:block>
-                                                    <fo:table>
-                                                        <fo:table-column/>
-                                                        <fo:table-column/>
-                                                        <fo:table-column/>
-                                                        <fo:table-column/>
-                                                        <fo:table-column/>
-                                                        <fo:table-column/>
-                                                        <fo:table-body>
-                                                            <fo:table-row>
-                                                                <fo:table-cell padding="1mm">
-                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                        No
-                                                                    </fo:block>
-                                                                </fo:table-cell>
-                                                                <fo:table-cell padding="1mm">
-                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                        <xsl:choose>
-                                                                            <xsl:when test="//fatca/usResidency = 'true'">
-                                                                                <fo:instream-foreign-object>
-                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                </fo:instream-foreign-object>
-                                                                            </xsl:when>
-                                                                            <xsl:otherwise>
-                                                                                <fo:instream-foreign-object>
-                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                </fo:instream-foreign-object>
-                                                                            </xsl:otherwise>
-                                                                        </xsl:choose>
-                                                                    </fo:block>
-                                                                </fo:table-cell>
-                                                                <fo:table-cell padding="1mm">
-                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                            <fo:inline>
-                                                                                لا
-                                                                            </fo:inline>
-                                                                        </fo:bidi-override>
-                                                                    </fo:block>
-                                                                </fo:table-cell>
-
-                                                                <fo:table-cell padding="1mm">
-                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                        Yes
-                                                                    </fo:block>
-                                                                </fo:table-cell>
-                                                                <fo:table-cell padding="1mm">
-                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                        <xsl:choose>
-                                                                            <xsl:when test="//fatca/usResidency = 'true'">
-                                                                                <fo:instream-foreign-object>
-                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                </fo:instream-foreign-object>
-                                                                            </xsl:when>
-                                                                            <xsl:otherwise>
-                                                                                <fo:instream-foreign-object>
-                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                </fo:instream-foreign-object>
-                                                                            </xsl:otherwise>
-                                                                        </xsl:choose>
-                                                                    </fo:block>
-                                                                </fo:table-cell>
-                                                                <fo:table-cell padding="1mm">
-                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                            <fo:inline>
-                                                                                نعم
-                                                                            </fo:inline>
-                                                                        </fo:bidi-override>
-                                                                    </fo:block>
-                                                                </fo:table-cell>
-                                                            </fo:table-row>
-                                                        </fo:table-body>
-                                                    </fo:table>
-                                                </fo:block>
-                                            </fo:table-cell>
-                                            <fo:table-cell padding="1mm">
-                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                        <fo:inline>
-                                                            هل تحمل إقامة في الولايات المتحدة الأمريكية؟
+                                                            هل أنت مواطن أمريكي ؟
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -7892,7 +8903,7 @@
                                                 <fo:block color="#004682" font-size="7pt" text-align="right" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            هل أنت مولود في الولايات المتحدة الأمريكية؟
+                                                            هل أنت مولود في الولايات المتحدة الأمريكية ؟
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
@@ -7900,16 +8911,13 @@
                                         </fo:table-row>
 
                                         <fo:table-row padding="1mm">
-                                            <fo:table-cell padding="1mm">
-                                                <fo:block color="#004682" font-size="7pt">
-                                                    If yes for any of the previous questions, fill W9 form
+                                            <fo:table-cell padding="1mm" number-columns-spanned="2">
+                                                <fo:block color="red" font-size="7pt">
+                                                    If yes for any of the previous questions, fill the W9 form (attached)
                                                 </fo:block>
                                             </fo:table-cell>
-                                            <fo:table-cell>
-                                                <fo:block/>
-                                            </fo:table-cell>
                                             <fo:table-cell padding="1mm">
-                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
+                                                <fo:block color="red" font-size="7pt" text-align="right" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
                                                             في حال الإجابة بنعم على أي من الأسئلة السابقة، يرجى تعبئة نموذج W9
@@ -7922,815 +8930,6 @@
                                     </fo:table-body>
                                 </fo:table>
 
-                                <!--Other FATCA details-->
-                                <fo:table margin-top="2mm" border="0.8 solid #004682">
-                                    <fo:table-column/>
-                                    <fo:table-body>
-                                        <fo:table-row>
-                                            <fo:table-cell>
-                                                <fo:table>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-column column-width="20%"/>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    Have you issued Power of Attorney to a third party to operate on this account on your behalf?
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell>
-                                                                <fo:block>
-                                                                    <fo:table>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-body>
-                                                                            <fo:table-row>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        No
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//poaFlag = 'true'">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                لا
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        Yes
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//poaFlag = 'true'">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                نعم
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                            </fo:table-row>
-                                                                        </fo:table-body>
-                                                                    </fo:table>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            هل قمت بإصدار توكيل لأحد للتعامل على الحساب نيابة عنك؟
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-
-                                                <fo:table>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    If yes, name the Attorney
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
-                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                    <xsl:value-of select="//o/poaName"/>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            إذا نعم، أذكر إسم الوكيل
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-                                            </fo:table-cell>
-                                        </fo:table-row>
-                                    </fo:table-body>
-                                </fo:table>
-
-                                <fo:table border="0.8 solid #004682">
-                                    <fo:table-column/>
-                                    <fo:table-body>
-                                        <fo:table-row>
-                                            <fo:table-cell>
-                                                <fo:table>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-column column-width="20%"/>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    Are you authorized to sign on other persons’ accounts with Gulf Bank or do you have joint accounts with them?
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell>
-                                                                <fo:block>
-                                                                    <fo:table>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-body>
-                                                                            <fo:table-row>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        No
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//authorizeJointAcountFlag = 'true'">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                لا
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        Yes
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//authorizeJointAcountFlag = 'true'">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                نعم
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                            </fo:table-row>
-                                                                        </fo:table-body>
-                                                                    </fo:table>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            هل أنت مخول بالتوقيع على حسابات أشخاص آخرين لدى بنك الخليج أو لديك حسابات مشتركة معهم؟
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-
-                                                <fo:table>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    If yes, write the account number
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
-                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                    <xsl:value-of select="//authorizeJointAcount1"/>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            إذا نعم، أذكر رقم الحساب
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-                                            </fo:table-cell>
-                                        </fo:table-row>
-                                    </fo:table-body>
-                                </fo:table>
-
-                                <fo:table border="0.8 solid #004682">
-                                    <fo:table-column/>
-                                    <fo:table-body>
-                                        <fo:table-row>
-                                            <fo:table-cell>
-                                                <fo:table>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-column column-width="20%"/>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    Do you have standing orders to transfer funds to any of your accounts outside the State of Kuwait?
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell>
-                                                                <fo:block>
-                                                                    <fo:table>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-body>
-                                                                            <fo:table-row>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        No
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//fatca/standingInstructionsCountries/e">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                لا
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        Yes
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//fatca/standingInstructionsCountries/e">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                نعم
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                            </fo:table-row>
-                                                                        </fo:table-body>
-                                                                    </fo:table>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            هل لديك تعليمات ثابتة لتحويل الأموال إلى أي من حساباتك خارج دولة الكويت؟
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-
-                                                <fo:table>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    If yes, write the Country name
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
-                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                    <xsl:choose>
-                                                                        <xsl:when test="//fatca/standingInstructionsCountries/e">
-                                                                            <xsl:for-each select="//fatca/standingInstructionsCountries/e">
-                                                                                <xsl:value-of select="countryCodeName"/>
-                                                                                <xsl:if test="position() != last()">, </xsl:if>
-                                                                            </xsl:for-each>
-                                                                        </xsl:when>
-                                                                    </xsl:choose>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            إذا نعم، أذكر إسم البلد
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-                                            </fo:table-cell>
-                                        </fo:table-row>
-                                    </fo:table-body>
-                                </fo:table>
-
-                                <fo:table border="0.8 solid #004682">
-                                    <fo:table-column/>
-                                    <fo:table-body>
-                                        <fo:table-row>
-                                            <fo:table-cell>
-                                                <fo:table>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-column column-width="20%"/>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    Is there any valid Power of Attorney or signature authority issued by you to a third party out of the State of Kuwait
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell>
-                                                                <fo:block>
-                                                                    <fo:table>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-body>
-                                                                            <fo:table-row>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        No
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//fatca/poaCountries/e">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                لا
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        Yes
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//fatca/poaCountries/e">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                    <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                        <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                        <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                        <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                    </svg:g>
-                                                                                </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                نعم
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                            </fo:table-row>
-                                                                        </fo:table-body>
-                                                                    </fo:table>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            هل يوجد توكيل ساري المفعول أو تفويض بالتوقيع صادر منك إلى شخص خارج دولة الكويت
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-
-                                                <fo:table>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    If yes, write the third party and the Country name
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
-                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                    <xsl:choose>
-                                                                        <xsl:when test="//fatca/poaCountries/e">
-                                                                            <xsl:for-each select="//fatca/poaCountries/e">
-                                                                                <xsl:value-of select="poaName"/> - <xsl:value-of select="countryCodeName"/>
-                                                                                <xsl:if test="position() != last()">, </xsl:if>
-                                                                            </xsl:for-each>
-                                                                        </xsl:when>
-                                                                    </xsl:choose>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            إذا نعم، أذكر إسم الوكيل و إسم البلد
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-                                            </fo:table-cell>
-                                        </fo:table-row>
-                                    </fo:table-body>
-                                </fo:table>
-
-                                <fo:table border="0.8 solid #004682">
-                                    <fo:table-column/>
-                                    <fo:table-body>
-                                        <fo:table-row>
-                                            <fo:table-cell>
-                                                <fo:table>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-column column-width="20%"/>
-                                                    <fo:table-column column-width="40%"/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    Are you a partner in a company or a chairman of a company that has accounts with Gulf Bank?
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell>
-                                                                <fo:block>
-                                                                    <fo:table>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-column/>
-                                                                        <fo:table-body>
-                                                                            <fo:table-row>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        No
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//partnerFlag = 'true'">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                            </svg:g>
-                                                                        </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                لا
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="right">
-                                                                                        Yes
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="center" font-weight="bold">
-                                                                                        <xsl:choose>
-                                                                                            <xsl:when test="//partnerFlag = 'true'">
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                                <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                    <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                                    <svg:line x1="4" y1="10" x2="10" y2="17"/>
-                                                                                    <svg:line x1="10" y1="17" x2="17" y2="3"/>
-                                                                                </svg:g>
-                                                                            </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:when>
-                                                                                            <xsl:otherwise>
-                                                                                                <fo:instream-foreign-object>
-                                                                                                    <svg:svg width="7" height="7" viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve">
-                                                                            <svg:g style="fill:none; stroke:black; stroke-width:4">
-                                                                                <svg:rect x="0" y="0" width="20" height="20"/>
-                                                                            </svg:g>
-                                                                        </svg:svg>
-                                                                                                </fo:instream-foreign-object>
-                                                                                            </xsl:otherwise>
-                                                                                        </xsl:choose>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                                <fo:table-cell padding="1mm">
-                                                                                    <fo:block color="#004682" font-size="7pt" text-align="left" >
-                                                                                        <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                                            <fo:inline>
-                                                                                                نعم
-                                                                                            </fo:inline>
-                                                                                        </fo:bidi-override>
-                                                                                    </fo:block>
-                                                                                </fo:table-cell>
-                                                                            </fo:table-row>
-                                                                        </fo:table-body>
-                                                                    </fo:table>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            هل أنت شريك في شركة أو تتولى إدارة شركة لديها حسابات في بنك الخليج؟
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-
-                                                <fo:table>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-column/>
-                                                    <fo:table-body>
-                                                        <fo:table-row padding="1mm">
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt">
-                                                                    If yes, write the account number
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm" background-color="#CDDBE6">
-                                                                <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                    <xsl:value-of select="//partnerAcount1"/>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                            <fo:table-cell padding="1mm">
-                                                                <fo:block color="#004682" font-size="7pt" text-align="right" >
-                                                                    <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
-                                                                        <fo:inline>
-                                                                            إذا نعم، أذكر رقم الحساب
-                                                                        </fo:inline>
-                                                                    </fo:bidi-override>
-                                                                </fo:block>
-                                                            </fo:table-cell>
-                                                        </fo:table-row>
-                                                    </fo:table-body>
-                                                </fo:table>
-                                            </fo:table-cell>
-                                        </fo:table-row>
-                                    </fo:table-body>
-                                </fo:table>
                             </fo:block>
 
                             <fo:block>
@@ -8795,12 +8994,12 @@
                                                 <fo:block color="#004682" font-size="7pt" text-align="center" >
                                                     <fo:bidi-override unicode-bidi="embed" direction="rtl" font-family="Arial">
                                                         <fo:inline>
-                                                            رقم التعريف الضريبي (TIN)
+                                                            رقم التعريف الضريبي / رقم الضمان الاجتماعي
                                                         </fo:inline>
                                                     </fo:bidi-override>
                                                 </fo:block>
                                                 <fo:block color="#004682" font-size="7pt" text-align="center">
-                                                    Tax Identification Number (TIN)
+                                                    Tax Identification Number (TIN) / Social Security Number
                                                 </fo:block>
                                             </fo:table-cell>
 

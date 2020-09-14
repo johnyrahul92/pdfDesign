@@ -28,10 +28,11 @@
         <e>
             <contactPointType>PERMANANT</contactPointType>
             <postalContact>
-                <address1/>
-                <address2 />
-                <address3 />
-                <addressCountry/>
+                <address1>Address 1</address1>
+                <address2>Address 2</address2>
+                <address3>Address 3</address3>
+                <addressCountry>AE</addressCountry>
+                <addressCountryName>United Arab Emirates</addressCountryName>
             </postalContact>
             <telephonicContact>
                 <countryCode/>
@@ -86,6 +87,16 @@
     <fatca>
         <poaCountries/>
         <standingInstructionsCountries/>
+        <outsideResidentialAddress>
+            <e>
+                <countryCode>IN</countryCode>
+                <countryCodeName>India</countryCodeName>
+            </e>
+            <e>
+                <countryCode>JP</countryCode>
+                <countryCodeName>Japan</countryCodeName>
+            </e>
+        </outsideResidentialAddress>
         <taxResidences/>
         <usCitizen/>
         <usResidency/>
@@ -107,13 +118,51 @@
     <pepRelativeFlag/>
     <pepRelativeName/>
     <pepRelativeType/>
-    <poaFlag/>
-    <poaName json_null="true" />
+    <poaFlag>true</poaFlag>
+    <poaName>xyz abc</poaName>
+    <poaNationalityName>Algeria</poaNationalityName>
     <preferredLanguage/>
     <purpose/>
     <qualification />
-    <relatives/>
-    <specialNeeds/>
+    <relatives>
+            <e>
+                <relationship>F</relationship>
+                <relationshipName>Father</relationshipName>
+                <customerName>xyz</customerName>
+            </e>
+            <e>
+                <relationship>M</relationship>
+                <relationshipName>Mother</relationshipName>
+                <customerName>abc</customerName>
+            </e>
+            <e>
+                <relationship>C</relationship>
+                <relationshipName>Children</relationshipName>
+                <customerName>Very long name 1</customerName>
+            </e>
+        <e>
+            <relationship>C</relationship>
+            <relationshipName>Children</relationshipName>
+            <customerName>Very long name 2</customerName>
+        </e>
+        <e>
+            <relationship>C</relationship>
+            <relationshipName>Children</relationshipName>
+            <customerName>Very long name 3</customerName>
+        </e>
+        <e>
+            <relationship>C</relationship>
+            <relationshipName>Children</relationshipName>
+            <customerName>Very long name 4</customerName>
+        </e>
+        <e>
+            <relationship>C</relationship>
+            <relationshipName>Children</relationshipName>
+            <customerName>Very long name 5</customerName>
+        </e>
+    </relatives>
+    <specialNeeds>O</specialNeeds>
+    <specialNeedsOthers>dlfjalsdfj</specialNeedsOthers>
     <usaBorn/>
     <cifSegment/>
 </o>
