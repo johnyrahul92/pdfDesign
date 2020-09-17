@@ -800,7 +800,17 @@
                                                         </fo:table-cell>
                                                         <fo:table-cell padding="1mm">
                                                             <fo:block font-size="7pt" color="#004682" text-align="center">
-                                                                <xsl:value-of select="identityNo"/>
+                                                                <xsl:if test="otherNationalityCode = 'US'">
+                                                                    <xsl:if test="substring(identityNo,1,1) = '*' or substring(identityNo,1,1) = '$' or substring(identityNo,1,1) = '@' or substring(identityNo,1,1) = '#'">
+                                                                        <xsl:value-of select="substring(identityNo,2)"/>
+                                                                    </xsl:if>
+                                                                    <xsl:if test="substring(identityNo,1,1) != '*' and substring(identityNo,1,1) != '$' and substring(identityNo,1,1) != '@' and substring(identityNo,1,1) != '#'">
+                                                                        <xsl:value-of select="identityNo"/>
+                                                                    </xsl:if>
+                                                                </xsl:if>
+                                                                <xsl:if test="otherNationalityCode != 'US'">
+                                                                    <xsl:value-of select="identityNo"/>
+                                                                </xsl:if>
                                                             </fo:block>
                                                         </fo:table-cell>
                                                         <fo:table-cell padding="1mm">
@@ -1684,7 +1694,7 @@
                                             <fo:block font-size="7pt" color="#004682" text-align="center">
                                                 <xsl:choose>
                                                     <xsl:when test="//specialNeeds = 'O'">
-                                                        <xsl:value-of select="//specialNeedsOthers"/>
+                                                        <xsl:value-of select="//specialNeedsRemarks"/>
                                                     </xsl:when>
                                                 </xsl:choose>
                                             </fo:block>

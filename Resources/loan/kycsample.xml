@@ -105,7 +105,26 @@
     <identities/>
     <maritalStatus/>
     <nationality/>
-    <otherNationalities/>
+    <otherNationalities>
+        <e>
+            <idExpiryDate>25/12/2030</idExpiryDate>
+            <identityNo>*jdfklsdjfl</identityNo>
+            <otherNationalityCode>US</otherNationalityCode>
+            <otherNationalityCodeName>United States of America</otherNationalityCodeName>
+        </e>
+        <e>
+            <idExpiryDate>25/11/2030</idExpiryDate>
+            <identityNo>jdfkfelsdjfl</identityNo>
+            <otherNationalityCode>US</otherNationalityCode>
+            <otherNationalityCodeName>United States of America</otherNationalityCodeName>
+        </e>
+        <e>
+            <idExpiryDate>25/08/2030</idExpiryDate>
+            <identityNo>jdfklsdjfl</identityNo>
+            <otherNationalityCode>AE</otherNationalityCode>
+            <otherNationalityCodeName>United Arab Emirates</otherNationalityCodeName>
+        </e>
+    </otherNationalities>
     <otherPepCategory />
     <otherPepRelativeCategory />
     <otherPurpose />
@@ -162,7 +181,7 @@
         </e>
     </relatives>
     <specialNeeds>O</specialNeeds>
-    <specialNeedsOthers>dlfjalsdfj</specialNeedsOthers>
+    <specialNeedsRemarks>dlfjalsdfj</specialNeedsRemarks>
     <usaBorn/>
     <cifSegment/>
 </o>
